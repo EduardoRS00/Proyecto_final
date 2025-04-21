@@ -1,0 +1,58 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookingAdminController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\Auth\AdminLoginController;
+/*
+|--------------------------------------------------------------------------
+| Rutas públicas (Clientes)
+|--------------------------------------------------------------------------
+*/
+
+// Página principal de un restaurante (bienvenida)
+Route::get('/reservas/{id}', [BookingController::class, 'index'])
+->name('restaurant.view');
+
+Route::post('/reservar', [BookingController::class, 'store'])->name('reservar');
+
+// Formulario para hacer una reserva
+//Route::middleware(['auth'])->group(function () {
+    // Ruta principal para la gestión de reservas
+Route::get('/index', [AdminController::class, 'index'])->name('index');
+
+Route::get('/restaurante/{id}', [BookingAdminController::class, 'index'])->name('reservas.index');
+Route::get('/reservas/{id}/filtrar', [BookingAdminController::class, 'filter'])->name('reservas.filtrar');
+
+Route::get('/login', [AdminController::class, 'login'])->name('login');
+Route::post('/index', [AdminController::class, 'index'])->name('login.process');
+Route::post('/reservas/{id}/llegada', [AdminController::class, 'marcarLlegada'])->name('reservas.arrival')->middleware('auth');
+
+Route::get('/reservas/{id}/editar', [BookingAdminController::class, 'edit'])->name('reservas.edit');
+
+Route::get('/fechas-bloqueadas/{restaurante}', [BookingController::class, 'fechasBloqueadas']);
+
+
+Route::get('/admin/login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminLoginController::class, 'login']);
+Route::post('/admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+Route::get('/admin/user/index', [AdminUserController::class, 'index'])->name('admin.users.index');
+
+Route::get('/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+Route::get('/users/{user}/reservas', [AdminUserController::class, 'verReservas'])->name('admin.users.reservas');
+Route::post('/admin/users/{user}/toggle', [AdminUserController::class, 'togglePago'])->name('admin.users.toggle');
+
+Route::post('/admin/users/store', [AdminUserController::class, 'store'])->name('admin.users.store');
+// Mostrar formulario de alta
+Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.users.create');
+
+// Guardar nuevo usuario
+Route::post('/admin/users/store', [AdminUserController::class, 'alta'])->name('admin.users.store');
+
+
+Route::get('/booking/availability/{year}/{month}', [BookingController::class, 'monthAvailability']);
+
+// En routes/web.php
+Route::get('/booking/availability/{restaurant}/{year}/{month}', [App\Http\Controllers\BookingController::class, 'monthAvailability']);

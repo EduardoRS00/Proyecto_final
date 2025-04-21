@@ -1,0 +1,402 @@
+/* Estilos generales */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5faff;
+  color: #0d47a1;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #0d47a1;
+}
+
+/* Botones de resumen */
+.summary-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+
+
+.summary-buttons .btn {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  border: 1px solid #90caf9;
+  min-width: 120px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1 1 auto;
+  max-width: 200px;
+}
+
+/* Filtros */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filters label {
+  font-weight: bold;
+  color: #0d47a1;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #90caf9;
+  color: #0d47a1;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 15px;
+}
+
+/* Tarjetas de reservas */
+.card {
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.card .card-body {
+  padding: 16px;
+}
+
+/* Estados visuales */
+.bg-confirmed {
+  background-color: #e8f5e9;
+  border-left: 5px solid #4caf50;
+}
+
+.bg-arrived {
+  background-color: #c8e6c9;
+}
+
+.bg-pending {
+  background-color: #fffde7;
+  border-left: 5px solid #ffc107;
+}
+
+.bg-delayed {
+  background-color: #ffebee;
+  border-left: 5px solid #f44336;
+}
+
+.bg-no-show {
+  background-color: #ede7f6;
+  border-left: 5px solid #673ab7;
+}
+
+/* Botón principal */
+button,
+.btn-llegada {
+  background-color: #1976d2;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover,
+.btn-llegada:hover {
+  background-color: #1565c0;
+  transform: scale(1.03);
+}
+
+button:active,
+.btn-llegada:active {
+  background-color: #0d47a1;
+  transform: scale(0.98);
+}
+
+.btn-llegada {
+  background-color: #4caf50;
+}
+
+.btn-llegada:hover {
+  background-color: #43a047;
+}
+
+.btn-llegada:active {
+  background-color: #388e3c;
+}
+
+/* Fila de reserva */
+.reservation-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1rem;
+  gap: 10px;
+}
+
+.reservation-row > div {
+  flex: 1 1 100px;
+  padding: 5px 10px;
+  min-width: 100px;
+}
+
+/* Iconos de estado */
+.status-icon {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+/* Leyenda */
+.legend {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.legend span {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+
+.legend .confirmed {
+  background-color: #4caf50;
+}
+
+.legend .pending {
+  background-color: #ffc107;
+}
+
+.legend .no-show {
+  background-color: #f44336;
+}
+
+/* Formulario horizontal */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  background-color: #e3f2fd;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Grupo de filtro */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  flex: 1;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #0d47a1;
+  margin-bottom: 6px;
+}
+
+.filter-group input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #90caf9;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #0d47a1;
+  transition: border-color 0.3s ease;
+}
+
+.filter-group input:focus {
+  border-color: #42a5f5;
+  outline: none;
+}
+
+/* Botón Filtrar */
+.btn-filtrar {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-filtrar:hover {
+  background-color: #43a047;
+  transform: scale(1.02);
+}
+
+/* Contenedor de resumen */
+.summary-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Caja de info */
+.info-box {
+  background-color: #e3f2fd;
+  border: 1px solid #90caf9;
+  border-radius: 12px;
+  padding: 16px 24px;
+  text-align: center;
+  min-width: 120px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Título y valor */
+.info-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0d47a1;
+  margin-bottom: 4px;
+}
+
+.info-value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1565c0;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Botón Limpiar */
+.btn-limpiar {
+  background-color: #ffffff;
+  color: #1976d2;
+  border: 1px solid #64b5f6;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.btn-limpiar:hover {
+  background-color: #e3f2fd;
+  transform: scale(1.02);
+}
+
+/* Responsive: filtros en columna en pantallas pequeñas */
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+   .info-box {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .btn-filtrar,
+  .btn-limpiar {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* Responsive para móviles */
+@media (max-width: 767px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .reservation-row {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;
+  }
+
+  .reservation-row > div {
+    width: 100%;
+    padding: 6px 0;
+  }
+
+  .status-icon {
+    text-align: left;
+    margin-top: 6px;
+  }
+
+  .summary-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .summary-buttons .btn {
+    width: 100%;
+  }
+
+  .legend {
+    font-size: 13px;
+  }
+}
+
+/* Responsive para tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding: 30px;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .summary-buttons .btn {
+    min-width: 130px;
+  }
+}
+
+/* Responsive para pantallas grandes */
+@media (min-width: 1280px) {
+  .summary-buttons {
+    justify-content: space-evenly;
+  }
+
+  .filters {
+    gap: 20px;
+  }
+
+  h2 {
+    font-size: 2.2rem;
+  }
+}

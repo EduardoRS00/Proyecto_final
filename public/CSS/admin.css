@@ -1,0 +1,86 @@
+/* Fondo y tipografía */
+body {
+    background-color: #ffffff;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor centrado */
+.container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+}
+
+/* Tarjeta */
+.card {
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgb(157, 255, 0);
+    overflow: hidden;
+}
+
+.email{
+    margin-left: 51px;
+}
+
+.contraseña{
+    margin-left: 10px;
+}
+
+.card-header {
+    background-color: rgba(157, 255, 0, 0.704);
+    color: #fff;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.card-body {
+    padding: 1.8rem;
+}
+
+/* Inputs */
+.form-control {
+    border: 1px solid rgb(157, 255, 0);
+    color: #000000;
+    border-radius: 5px;
+}
+
+.form-control:focus {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: rgb(157, 255, 0);
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+/* Botón */
+.btn-primary {
+    background-color: rgba(157, 255, 0, 0.776);
+    border: none;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: rgb(157, 255, 0);
+}
+
+/* Alertas */
+.alert-danger {
+    background-color: #ff0000;
+    border-color: #ffffff;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}

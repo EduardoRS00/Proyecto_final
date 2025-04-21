@@ -1,0 +1,69 @@
+/* confirmacion.css */
+
+.confirmacion-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #e8f5e9;
+  border: 2px solid #81c784;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 128, 128, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.confirmacion-container h1{
+    color: #1565c0;
+    text-align: center;
+}
+
+.confirmacion-container h2 {
+  color: #2e7d32;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.confirmacion-container p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.confirmacion-container span {
+  font-weight: bold;
+  color: #1565c0;
+}
+
+.confirmacion-container .boton-volver {
+  display: block;
+  margin: 30px auto 0;
+  padding: 10px 25px;
+  background-color: #2196f3;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.confirmacion-container .boton-volver:hover {
+  background-color: #1976d2;
+}
+
+
+.boton-volver {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #198754; /* Bootstrap success */
+  color: #fff;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boton-volver:hover {
+  background-color: #146c43;
+  color: #fff;
+  text-decoration: none;
+}

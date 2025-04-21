@@ -1,0 +1,48 @@
+.booking-card {
+  background: #ffffff;
+  border-left: 6px solid #4caf50; /* verde para destacar */
+  border-radius: 16px;
+  padding: 24px 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.booking-card .card-body {
+  padding: 0;
+}
+
+  .booking-card .row > div {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px 0;
+  }
+
+.booking-card h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #0d47a1;
+}
+
+.booking-card .row > div {
+  font-size: 1rem;
+  line-height: 1.6;
+  padding: 8px 12px;
+  border-bottom: 1px solid #e0f2f1;
+}
+
+.booking-card strong {
+  display: block;
+  font-weight: 600;
+  color: #1976d2;
+  margin-bottom: 4px;
+}
+
+.booking-card .text-muted,
+.booking-card .text-danger {
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 5px;
+  font-size: 0.95rem;
+}

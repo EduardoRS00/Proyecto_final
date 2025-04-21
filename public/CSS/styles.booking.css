@@ -1,0 +1,980 @@
+body{
+  background-color: #80b284;
+}
+
+.litepicker {
+  all: unset;
+  background: transparent !important;
+}
+  .day-item{
+    background-color: black;
+    border: 1px solid black !important;
+  }
+
+  .calendarios{
+    margin-top: 40px;
+  }
+
+.litepicker,
+.litepicker *,
+.litepicker .container__main,
+.litepicker .container__months,
+.litepicker .month-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.month-item-name, .month-item-year{
+  font-size: x-large;
+  text-transform: capitalize;
+}
+
+  .boton-opcion {
+  border: 1px solid #80b284 !important;
+  background-color: #f6f6f6 !important;
+  padding: 8px 20px !important;
+  border-radius: 5px !important;
+  font-size: 16px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  color: black !important;
+}
+
+/* Cuando está seleccionado */
+.boton-opcion.selected {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+
+/* Elimina sombras internas de cualquier elemento del calendario */
+.litepicker * {
+  box-shadow: none !important;
+}
+
+/* Elimina bordes y rellenos que puedan quedar */
+.litepicker .container__months,
+.litepicker .container__main {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+@media (max-width: 400px) {
+  .inicio-restaurante {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .litepicker {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .contacto {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 320px;
+    margin: 20px auto 0 auto;
+    padding: 10px 20px 20px 20px;
+  }
+
+  .formulario-datoss{ 
+    width: 350px;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .container__days{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    gap: 10px;
+    justify-items: center;
+    width: 345px;
+    margin: 10px 10px 10px 95px;
+  }
+
+  .month-item-header{
+  width: 340px;
+  }
+
+  .month-item-weekdays-row{
+    width: 340px;
+    margin-left: 67px;
+  }
+  .calendarios{
+    display: flex;
+    justify-content: center;
+  }
+
+.container__main,
+.litepicker .container__months,
+.litepicker .month-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 350px;
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+  .contact {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .name {
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+  }
+
+  .seccion-formulario {
+    margin-bottom: 15px;
+    padding: 8px;
+  }
+
+  .seccion-formulario label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .grupo-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .boton-opcion,
+  .reservar {
+    border: 1px solid #80b284;
+    background-color: #f6f6f6;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  
+  .day-item {
+  border: 1px solid #80b284 !important;
+  background-color: white !important;
+  border-radius: 5px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  color: black !important;
+}
+
+.day-item.is-start-date,
+.day-item.is-end-date {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+
+.day-item.selected {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+.day-item:hover:not(.selected):not(.pasado) {
+  background-color: #c5e0c8 !important;
+  border-color: #80b284 !important;
+}
+
+.day-item.pasado {
+  border: 1px solid #cc0000 !important;
+  background-color: #f9d6d6 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.6 !important;
+}
+
+
+
+  .mas {
+    max-width: 90px;
+    padding: 8px 0;
+    border: 1px solid #80b284;
+  }
+
+  select {
+    font-size: 14px;
+    max-width: 260px;
+    padding: 8px;
+  }
+
+  .etiqueta-icono {
+    gap: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .etiqueta-icono i {
+    font-size: 16px;
+  }
+}
+
+
+
+/* MÓVIL: hasta 600px */
+@media (min-width: 401px) and (max-width: 600px) {
+  .inicio-restaurante {
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .litepicker {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .month-item-weekdays-row{
+    width: 500px;
+    margin-left: 220px;
+  }
+
+  .contacto {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 320px;
+    margin: 20px auto 0 auto;
+    padding: 10px 20px 20px 20px;
+  }
+
+  .formulario-datoss{ 
+    width: 500px;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+  .calendarios{
+    display: flex;
+    justify-content: center;
+  }
+
+.container__main,
+.litepicker .container__months,
+.litepicker .month-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 500px;
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+ .month-item-header{
+  width: 490px;
+  }
+
+  .container__days{
+  display: grid !important;
+  grid-template-columns: repeat(7,1fr) !important;
+    gap: 10px;
+    justify-items: center;
+    width: 470px;
+    margin: 10px 10px 10px 235px;
+  }
+
+  .contact {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .name {
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+  }
+
+  .seccion-formulario {
+    margin-bottom: 15px;
+    padding: 8px;
+  }
+
+  .seccion-formulario label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .grupo-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .boton-opcion,
+  .reservar {
+    border: 1px solid #80b284;
+    background-color: #f6f6f6;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .mas {
+    max-width: 90px;
+    padding: 8px 0;
+    border: 1px solid #80b284;
+  }
+
+  select {
+    font-size: 14px;
+    max-width: 260px;
+    padding: 8px;
+  }
+
+  .day-item {
+  border: 1px solid #80b284 !important;
+  background-color: white !important;
+  border-radius: 5px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  color: black !important;
+}
+
+.day-item.is-start-date,
+.day-item.is-end-date {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+
+.day-item.selected {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+.day-item:hover:not(.selected):not(.pasado) {
+  background-color: #c5e0c8 !important;
+  border-color: #80b284 !important;
+}
+
+.day-item.pasado {
+  border: 1px solid #cc0000 !important;
+  background-color: #f9d6d6 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.6 !important;
+}
+
+  .etiqueta-icono {
+    gap: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .etiqueta-icono i {
+    font-size: 16px;
+  }
+}
+
+/* TABLET: entre 601px y 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .inicio-restaurante {
+    text-align: center;
+    margin-top: 18px;
+  }
+
+  .litepicker {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .contacto {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 420px;
+    margin: 25px auto 0 auto;
+    padding: 12px 30px 25px 30px;
+  }
+
+  .contact {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+    .calendarios{
+    display: flex;
+    justify-content: center;
+  }
+
+.container__main,
+.litepicker .container__months,
+.litepicker .month-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 650px;
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+  .container__days{
+  display: grid !important;
+  grid-template-columns: repeat(7,1fr) !important;
+    gap: 10px;
+    justify-items: center;
+    width: 630px;
+    margin: 10px 10px 10px 385px;
+  }
+
+  .month-item-header{
+    width: 635px;
+  }
+  .formulario-datoss{ 
+    width: 650px;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    padding: 30px;
+  }
+
+    .month-item-weekdays-row{
+    width: 650px;
+    margin-left: 370px;
+  }
+
+  .name {
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+  }
+
+  .seccion-formulario {
+    margin-bottom: 18px;
+    padding: 10px;
+  }
+
+  .seccion-formulario label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .grupo-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .boton-opcion,
+  .reservar {
+    border: 1px solid #80b284;
+    background-color: #f6f6f6;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+
+  .mas {
+    max-width: 100px;
+    padding: 10px 0;
+    border: 1px solid #80b284;
+  }
+
+  select {
+    font-size: 15px;
+    max-width: 330px;
+    padding: 10px;
+  }
+
+  .etiqueta-icono {
+    gap: 9px;
+    margin-bottom: 11px;
+    font-weight: 600;
+  }
+
+  
+  .day-item {
+  border: 1px solid #80b284 !important;
+  background-color: white !important;
+  border-radius: 5px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  color: black !important;
+}
+
+.day-item.is-start-date,
+.day-item.is-end-date {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+
+.day-item.selected {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+.day-item:hover:not(.selected):not(.pasado) {
+  background-color: #c5e0c8 !important;
+  border-color: #80b284 !important;
+}
+
+.day-item.pasado {
+  border: 1px solid #cc0000 !important;
+  background-color: #f9d6d6 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.6 !important;
+}
+
+
+
+  .etiqueta-icono i {
+    font-size: 17px;
+  }
+}
+
+/* ORDENADOR: desde 1025px en adelante */
+@media (min-width: 1025px) and (max-width: 1550px){
+  .inicio-restaurante {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .litepicker {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .contacto {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 30px auto 0 auto;
+    padding: 5px 40px 30px 40px;
+  }
+
+  .contact {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .name {
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+  }
+
+  .month-item-header{
+    width: 1010px;
+  }
+
+  .seccion-formulario {
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .seccion-formulario label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .grupo-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .calendarios{
+    display: flex;
+    justify-content: center;
+  }
+
+.container__main,
+.litepicker .container__months,
+.litepicker .month-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 1020px;
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 40px;
+}
+
+  .container__days{
+  display: grid !important;
+  grid-template-columns: repeat(7,1fr) !important;
+    gap: 10px;
+    justify-items: center;
+    width: 990px;
+    margin: 10px 10px 10px 760px;
+    padding: 20px 10px 20px 10px;
+  }
+
+  .month-item-weekdays-row{
+    width: 1000px;
+    margin-left: 750px;
+  }
+
+  .formulario-datoss{ 
+    width: 1020px;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    padding: 40px;
+  }
+
+   #inline-calendar {
+    width: 1020px;
+    margin: auto;
+  }
+
+  .boton-opcion,
+  .reservar {
+    border: 1px solid #80b284;
+    background-color: #f6f6f6;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 20px;
+  }
+
+  .mas {
+    max-width: 115px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border: solid 1px #80b284;
+  }
+
+  select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .day-item {
+  border: 1px solid #80b284 !important;
+  background-color: white !important;
+  border-radius: 5px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  color: black !important;
+  width: 85px !important;
+  font-size: x-large !important;
+}
+
+.day-item.is-start-date,
+.day-item.is-end-date {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+
+.day-item.selected {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+.day-item:hover:not(.selected):not(.pasado) {
+  background-color: #c5e0c8 !important;
+  border-color: #80b284 !important;
+}
+
+.day-item.pasado {
+  border: 1px solid #cc0000 !important;
+  background-color: #f9d6d6 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.6 !important;
+}
+
+
+  .etiqueta-icono {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .etiqueta-icono i {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1551px){
+   .inicio-restaurante {
+    text-align: center;
+    margin-top: 35px;
+  }
+
+  .litepicker {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .contacto {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: 700px;
+    margin: 30px auto 0 auto;
+    padding: 5px 40px 30px 40px;
+  }
+
+  .contact {
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .name {
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+  }
+
+  .month-item-header{
+    width: 1500px;
+  }
+
+  .seccion-formulario {
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .seccion-formulario label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .grupo-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .calendarios{
+    display: flex;
+    justify-content: center;
+  }
+
+.container__main,
+.litepicker .container__months,
+.litepicker .month-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  width: 1510px;
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 40px;
+}
+
+  .container__days{
+  display: grid !important;
+  grid-template-columns: repeat(7,1fr) !important;
+    gap: 10px;
+    justify-items: center;
+    width: 1500px;
+    margin: 10px 10px 10px 1250px;
+    padding: 20px 10px 20px 10px;
+  }
+
+  .month-item-weekdays-row{
+    width: 1500px;
+    margin-left: 1250px;
+    font-size: x-large;
+  }
+
+  .formulario-datoss{ 
+    width: 1500px;
+    background-color: white;
+    margin: auto;
+    border-radius: 5px;
+    padding: 40px;
+  }
+
+   #inline-calendar {
+    width: 1500px;
+    margin: auto;
+  }
+
+  .boton-opcion,
+  .reservar {
+    border: 1px solid #80b284;
+    background-color: #f6f6f6;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 20px;
+  }
+
+  .mas {
+    max-width: 115px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border: solid 1px #80b284;
+  }
+
+  select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .day-item {
+  border: 1px solid #80b284 !important;
+  background-color: white !important;
+  border-radius: 5px !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  color: black !important;
+  width: 85px !important;
+  font-size: x-large !important;
+}
+
+.day-item.is-start-date,
+.day-item.is-end-date {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+
+.day-item.selected {
+  background-color: #80b284 !important;
+  color: white !important;
+  border-color: #4d7f53 !important;
+}
+
+.day-item:hover:not(.selected):not(.pasado) {
+  background-color: #c5e0c8 !important;
+  border-color: #80b284 !important;
+}
+
+.day-item.pasado {
+  border: 1px solid #cc0000 !important;
+  background-color: #f9d6d6 !important;
+  color: #999 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: 0.6 !important;
+}
+
+
+  .etiqueta-icono {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .etiqueta-icono i {
+    font-size: 18px;
+  }
+}
+
+
+/* Estado de franja casi llena (≥ 80% aforo) */
+.boton-opcion.casi-lleno {
+  background-color: #ffcc80 !important; /* naranja claro */
+  color: #000 !important;               /* texto oscuro para contraste */
+}
+
+/* Estado de franja no disponible (aforo completo) */
+.boton-opcion.no-disponible {
+  background-color: #ddd !important;  /* gris apagado */
+  color: #999 !important;
+  cursor: not-allowed;
+}
+/* Si el botón está verdaderamente deshabilitado, asegurar estilo consistente */
+.boton-opcion.no-disponible:disabled {
+  opacity: 0.6;  /* ligeramente transparente para indicar deshabilitado */
+}
+
+
+.boton-opcion.disabled {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+  border: 1px solid #999;
+}
+
+
+.boton-opcion:disabled,
+.boton-opcion.no-disponible {
+  background-color: #ccc !important;
+  color: #666 !important;
+  cursor: not-allowed;
+  border: 1px solid #999;
+  opacity: 0.7;
+}
+
+.boton-opcion.activo {
+  background-color: #80b284 !important; /* verde bootstrap */
+  color: white !important;
+}
+
+.boton-opcion.activo {
+  background-color: #80b284 !important;
+  color: white !important;
+  border: 1px solid #80b284;
+}
+
+
+.boton-opcion.no-disponible {
+  background-color: #ccc !important;
+  color: #888 !important;
+  cursor: not-allowed;
+}
+
+
+.day-item.pasado {
+  background-color: #f8d7da !important;
+  border: 1px solid #f5c6cb !important;
+  color: #721c24 !important;
+  pointer-events: none;
+  opacity: 0.5;
+}

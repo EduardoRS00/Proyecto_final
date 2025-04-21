@@ -1,0 +1,180 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\User;
+use App\Models\Booking;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
+class BookingController extends Controller
+{
+     public function index($id)
+    {
+        $restaurante = User::findOrFail($id);
+        return view('booking.index', compact('restaurante')); 
+    }
+   public function create($id)
+    {
+        // Buscar restaurante y mostrar formulario
+    }
+
+    // Guardar reserva
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'restaurant_id'     => 'required|exists:users,id',
+            'booking_date'      => 'required|date',
+            'booking_time'      => 'required',
+            'num_people'        => 'required|integer|min:1',
+            'mesa'              => 'required|string|max:50',
+            'tipo'              => 'required|string|max:100',
+            'customer_name'     => 'required|string|max:100',
+            'customer_lastname' => 'required|string|max:250',
+            'contact_email'     => 'required|email|max:150',
+            'contact_phone'     => 'required|string|max:30',
+            'terms_accepted'    => 'accepted',
+        ]);
+
+        $booking = new Booking($validated);
+        $booking->table_type     = $request->input('mesa');
+        $booking->menu           = $request->input('tipo');
+        $booking->comments       = $request->input('comments');
+        $booking->baby_stroller  = $request->input('baby_stroller');
+        $booking->high_chair     = $request->input('high_chair');
+        $booking->wheelchair     = $request->input('wheelchair');
+        $booking->allergies      = $request->input('allergies');
+        $booking->promo_opt_in   = $request->has('promo_opt_in');
+        $booking->terms_accepted = $request->has('terms_accepted');
+        $booking->save();
+
+        return view('booking.confirmacion', ['reserva' => $booking]);
+    }
+
+
+    // Mostrar página de confirmación
+    public function confirm()
+    {
+        return view('bookings.confirm');
+    }
+
+    /*
+    public function obtenerCapacidad($restaurantId, $fecha)
+    {
+        $restaurant = User::findOrFail($restaurantId);
+        $aforoMax   = $restaurant->max_capacity;
+
+        // Definir las franjas horarias de servicio (intervalos de 15 min)
+        $franjas = [
+            "12:00",
+            "12:15",
+            "12:30",
+            "12:45",
+            "13:00",
+            "13:15",
+            "13:30",
+            "13:45",
+            "14:00",
+            "14:15",
+            "14:30",
+            "14:45",
+            "15:00",
+            "15:15",
+            "15:30",
+            "15:45",
+            "16:00",
+            "18:30",
+            "18:45",
+            "19:00",
+            "19:15",
+            "19:30",
+            "19:45",
+            "20:00",
+            "20:15",
+            "20:30",
+            "20:45",
+            "21:00",
+            "21:15",
+            "21:30",
+            "21:45",
+            "22:00",
+            "22:15",
+            "22:30"
+        ];
+
+        // Obtener reservas existentes del restaurante en esa fecha
+        $reservas = Booking::where('restaurant_id', $restaurantId)
+            ->where('booking_date', $fecha)
+            ->get();
+
+        // Calcular ocupación por franja
+        $ocupaciones = [];
+        foreach ($franjas as $horaSlot) {
+            $horaSlotCarbon = Carbon::parse("$fecha $horaSlot");
+            $ocupaciones[$horaSlot] = 0;
+
+            // Sumar personas de reservas activas en este momento (horaSlot)
+            foreach ($reservas as $reserva) {
+                $inicioRes = Carbon::parse($reserva->booking_date . ' ' . $reserva->booking_time);
+                $finRes    = $inicioRes->copy()->addHours(2);
+                if ($inicioRes <= $horaSlotCarbon && $horaSlotCarbon < $finRes) {
+                    $ocupaciones[$horaSlot] += $reserva->num_people;
+                }
+            }
+        }
+
+        // Devolver JSON con ocupaciones y aforo máximo
+        return response()->json([
+            'max_capacity' => $aforoMax,
+            'ocupaciones'  => $ocupaciones
+        ]);
+    }
+
+    */
+
+    public function monthAvailability($restaurant, $year, $month)
+    {
+        $start = Carbon::create($year, $month, 1)->startOfMonth();
+        $end   = Carbon::create($year, $month, 1)->endOfMonth();
+
+        $restaurante = User::findOrFail($restaurant);
+        $maxCap = $restaurante->max_capacity;
+
+        // Obtener reservas del mes actual de ese restaurante
+        $reservas = Booking::where('restaurant_id', $restaurante->id)
+            ->whereBetween('booking_date', [$start->format('Y-m-d'), $end->format('Y-m-d')])
+            ->get();
+
+        $ocupacion = [];
+
+        foreach ($reservas as $reserva) {
+            $inicio = Carbon::parse("{$reserva->booking_date} {$reserva->booking_time}");
+            $fin = $inicio->copy()->addHours(2); // Duración de la reserva: 2 horas
+
+            for ($slot = $inicio->copy(); $slot < $fin; $slot->addMinutes(15)) {
+                $fechaKey = $slot->format('Y-m-d');
+                $horaKey  = $slot->format('H:i');
+
+                // Sumar ocupación por franja
+                $ocupacion[$fechaKey][$horaKey] = ($ocupacion[$fechaKey][$horaKey] ?? 0) + $reserva->num_people;
+            }
+        }
+
+        return response()->json($ocupacion);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
