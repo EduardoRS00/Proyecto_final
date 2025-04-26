@@ -16,6 +16,7 @@
 
   <div class="inicio-restaurante">
     <h1 class="name">{{ $restaurante->name }}</h1>
+    <h2 class="name">{{ $restaurante->slogan }}</h2>
     <h2><i class="bi bi-calendar"></i> Selecciona una fecha</h2>
   </div>
 
@@ -44,13 +45,15 @@
             <button type="button" class="boton-opcion" data-valor="4">4</button>
             <button type="button" class="boton-opcion" data-valor="5">5</button>
             <button type="button" class="boton-opcion" data-valor="6">6</button>
-            <button type="button" class="boton-opcion" id="boton-7">7</button>
-            <select id="select-mas" class="mas">
-              <option value=""> + </option>
-              @for ($i = 8; $i <= 50; $i++)
-                <option value="{{ $i }}">{{ $i }}</option>
-                @endfor
-            </select>
+            <button type="button" class="boton-opcion" data-valor="7">7</button>
+            <button type="button" class="boton-opcion" data-valor="8">8</button>
+            <button type="button" class="boton-opcion" data-valor="9">9</button>
+            <button type="button" class="boton-opcion" data-valor="10">10</button>
+            <button type="button" class="boton-opcion" data-valor="11">11</button>
+            <button type="button" class="boton-opcion" data-valor="12">12</button>
+            <button type="button" class="boton-opcion" data-valor="13">13</button>
+            <button type="button" class="boton-opcion" data-valor="14">14</button>
+            <button type="button" class="boton-opcion" data-valor="15">15</button>
           </div>
           <input type="hidden" name="num_people" id="input-comensales" required>
         </div>
@@ -134,7 +137,7 @@
 
         <!-- MENSAJE DE ERROR -->
         <p id="mensaje-error" style="color:red; font-weight:bold; display:none;">
-          Todos los campos deben estar rellenos antes de continuar.
+          Todos los campos obligatorios deben llenarse antes de continuar.
         </p>
 
         <!-- BOTÓN INICIAL -->
@@ -261,33 +264,64 @@
           </div>
           <hr>
           <h5 class="mb-3">¿Alguna circunstancia especial?</h5>
-          <div class="row g-2 mb-3">
-            <div class="col-md-6"><label class="form-label">Silla de Ruedas</label>
-              <select name="wheelchair" class="form-select">@for ($i = 0; $i <= 5; $i++)<option value="{{ $i }}">{{ $i }}</option>@endfor</select>
+          <div class="row g-3 mb-3">
+            <!-- Silla de Ruedas -->
+            <div class="col-12 col-md-3">
+              <label class="form-label">Silla de Ruedas</label>
+              <select name="wheelchair" class="form-select">
+                @for ($i = 0; $i <= 5; $i++)
+                  <option value="{{ $i }}">{{ $i }}</option>
+                  @endfor
+              </select>
             </div>
-            <div class="col-md-6"><label class="form-label">Alergia</label>
+
+            <!-- Alergia -->
+            <div class="col-12 col-md-3">
+              <label class="form-label">Alergia</label>
               <select name="allergies" class="form-select">
                 <option value="no">No</option>
                 <option value="si">Sí</option>
               </select>
             </div>
+
+            <!-- Carrito de bebé -->
+            <div class="col-12 col-md-3">
+              <label class="form-label">Carrito de bebé</label>
+              <select name="baby_stroller" class="form-select">
+                @for ($i = 0; $i <= 5; $i++)
+                  <option value="{{ $i }}">{{ $i }}</option>
+                  @endfor
+              </select>
+            </div>
+
+            <!-- Trona -->
+            <div class="col-12 col-md-3">
+              <label class="form-label">Trona (silla alta)</label>
+              <select name="high_chair" class="form-select">
+                @for ($i = 0; $i <= 5; $i++)
+                  <option value="{{ $i }}">{{ $i }}</option>
+                  @endfor
+              </select>
+            </div>
           </div>
-          <hr>
-          <div class="form-check mb-2">
-            <input class="form-check-input" type="checkbox" name="terms_accepted" required>
-            <label class="form-check-label">Acepto condiciones y privacidad.</label>
-          </div>
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" name="promo_opt_in">
-            <label class="form-check-label">Deseo recibir promociones.</label>
-          </div>
+
         </div>
+        <hr>
+        <div class="form-check mb-2">
+          <input class="form-check-input" type="checkbox" name="terms_accepted" required>
+          <label class="form-check-label">Acepto condiciones y privacidad.</label>
+        </div>
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" name="promo_opt_in">
+          <label class="form-check-label">Deseo recibir promociones.</label>
+        </div>
+
 
         <!-- BOTÓN FINAL -->
         <button type="submit" id="boton-enviar-final" class="reservar mt-3" style="display: none;">Enviar Reserva</button>
-
       </div>
-    </form>
+  </div>
+  </form>
   </div>
 
   <div class="contacto">
@@ -295,6 +329,12 @@
     <p><i class="bi bi-telephone"></i> <strong>Teléfono: </strong>{{ $restaurante->phone }}</p>
     <p><i class="bi bi-envelope"></i> <strong>Email: </strong>{{ $restaurante->email }}</p>
     <p><i class="bi bi-geo-fill"></i> <strong>Dirección:</strong> {{ $restaurante->city }} {{ $restaurante->street }} {{ $restaurante->street_number }}</p>
+  </div>
+
+
+  <div id="data-restaurante"
+    data-restaurante-id="{{ $restaurante->id }}"
+    data-max-capacity="{{ $restaurante->max_capacity }}">
   </div>
 
 
@@ -307,10 +347,6 @@
 
   </script>
 
-  <div id="data-restaurante"
-    data-restaurante-id="{{ $restaurante->id }}"
-    data-max-capacity="{{ $restaurante->max_capacity }}">
-  </div>
 
 
 </body>

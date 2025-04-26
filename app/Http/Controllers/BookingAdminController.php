@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class BookingAdminController extends Controller
 {
@@ -43,6 +45,20 @@ class BookingAdminController extends Controller
         ]);
     }
 
+    public function marcarLlegada(Request $request, $id)
+    {
+        $booking = Booking::findOrFail($id);
+        $booking->arrival = true;
+        $booking->save();
+
+        // Solo devuelve respuesta si es AJAX
+        if ($request->expectsJson()) {
+            return response()->json(['success' => true]);
+        }
+
+        // Si por alguna razón se accede desde formulario normal, redirige
+        return redirect()->back()->with('success', 'Reserva marcada como llegada.');
+    }
 
 
     // Filtrar reservas (fecha, estado, etc.)

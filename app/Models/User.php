@@ -27,6 +27,7 @@ class User extends Authenticatable
         'phone',
         'max_capacity',
         'payment_date',
+        'slogan',
         'is_active_payment',
     ];
 

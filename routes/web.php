@@ -28,7 +28,7 @@ Route::get('/reservas/{id}/filtrar', [BookingAdminController::class, 'filter'])-
 
 Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::post('/index', [AdminController::class, 'index'])->name('login.process');
-Route::post('/reservas/{id}/llegada', [AdminController::class, 'marcarLlegada'])->name('reservas.arrival')->middleware('auth');
+Route::post('/reservas/{id}/llegada', [BookingAdminController::class, 'marcarLlegada'])->name('reservas.arrival');
 
 Route::get('/reservas/{id}/editar', [BookingAdminController::class, 'edit'])->name('reservas.edit');
 
@@ -52,7 +52,7 @@ Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name(
 Route::post('/admin/users/store', [AdminUserController::class, 'alta'])->name('admin.users.store');
 
 
-Route::get('/booking/availability/{year}/{month}', [BookingController::class, 'monthAvailability']);
+//Route::get('/booking/availability/{year}/{month}', [BookingController::class, 'monthAvailability']);
 
 // En routes/web.php
 Route::get('/booking/availability/{restaurant}/{year}/{month}', [App\Http\Controllers\BookingController::class, 'monthAvailability']);

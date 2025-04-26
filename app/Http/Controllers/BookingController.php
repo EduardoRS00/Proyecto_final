@@ -35,19 +35,29 @@ class BookingController extends Controller
             'contact_email'     => 'required|email|max:150',
             'contact_phone'     => 'required|string|max:30',
             'terms_accepted'    => 'accepted',
+            'prefix' => 'required|string|max:5',
         ]);
 
-        $booking = new Booking($validated);
-        $booking->table_type     = $request->input('mesa');
-        $booking->menu           = $request->input('tipo');
-        $booking->comments       = $request->input('comments');
-        $booking->baby_stroller  = $request->input('baby_stroller');
-        $booking->high_chair     = $request->input('high_chair');
-        $booking->wheelchair     = $request->input('wheelchair');
-        $booking->allergies      = $request->input('allergies');
-        $booking->promo_opt_in   = $request->has('promo_opt_in');
-        $booking->terms_accepted = $request->has('terms_accepted');
+        $booking = new Booking();
+        $booking->restaurant_id     = $validated['restaurant_id'];
+        $booking->booking_date      = $validated['booking_date'];
+        $booking->booking_time      = $validated['booking_time'];
+        $booking->num_people        = $validated['num_people'];
+        $booking->table_type        = $request->input('mesa');
+        $booking->menu              = $request->input('tipo');
+        $booking->customer_name     = $validated['customer_name'];
+        $booking->customer_lastname = $validated['customer_lastname'];
+        $booking->contact_email     = $validated['contact_email'];
+        $booking->contact_phone     = $validated['contact_phone'] = $request->input('prefix') . ' ' . $request->input('contact_phone');
+        $booking->comments          = $request->input('comments');
+        $booking->baby_stroller     = $request->input('baby_stroller');
+        $booking->high_chair        = $request->input('high_chair');
+        $booking->wheelchair        = $request->input('wheelchair');
+        $booking->allergies         = $request->input('allergies');
+        $booking->promo_opt_in      = $request->has('promo_opt_in');
+        $booking->terms_accepted    = $request->has('terms_accepted');
         $booking->save();
+
 
         return view('booking.confirmacion', ['reserva' => $booking]);
     }
@@ -151,8 +161,13 @@ class BookingController extends Controller
         foreach ($reservas as $reserva) {
             $inicio = Carbon::parse("{$reserva->booking_date} {$reserva->booking_time}");
             $fin = $inicio->copy()->addHours(2); // Duración de la reserva: 2 horas
+            $ultimaHora = Carbon::parse("{$reserva->booking_date} 23:45");
 
             for ($slot = $inicio->copy(); $slot < $fin; $slot->addMinutes(15)) {
+                if ($slot->greaterThan($ultimaHora)) {
+                    break; // Evitar bloques más allá de las 23:45
+                }
+
                 $fechaKey = $slot->format('Y-m-d');
                 $horaKey  = $slot->format('H:i');
 
