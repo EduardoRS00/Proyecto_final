@@ -75,3 +75,26 @@
     margin: 0;
     padding-left: 20px;
 }
+
+.btn-cancelar{
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    background-color: #dc3545; 
+    border: none;
+    margin-top: 20px;
+}
+.btn-cancelar:hover{
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: white;
+    background-color: #b70012; 
+    border: none;
+    margin-top: 20px;
+}
+.dentro{
+    color: white;
+    text-decoration: none;
+}

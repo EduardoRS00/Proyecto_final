@@ -18,8 +18,6 @@
         </ul>
     </div>
     @endif
-
-
     <div class="formulario-alta">
         <h3>Dar de alta un nuevo restaurante</h3>
         <form action="{{ route('admin.users.store') }}" method="POST">
@@ -64,7 +62,12 @@
                 <label for="max_capacity">Aforo máximo</label>
                 <input type="number" name="max_capacity" id="max_capacity" min="1" required>
             </div>
-            
+
+            <div class="form-row">
+                <label for="slogan">Slogan</label>
+                <input type="text" name="slogan" id="slogan">
+            </div>
+
             <div class="form-row">
                 <label for="payment_date">Fecha de pago</label>
                 <input type="date" name="payment_date" id="payment_date">
@@ -76,6 +79,9 @@
             </div>
         </form>
     </div>
+    <form style="display: flex; justify-content: center;" action="{{ route('admin.users.index') }}" method="GET">
+        <button class="btn-cancelar" type="submit">Cancelar alta</button>
+    </form>
 
 </body>
 

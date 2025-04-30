@@ -7,6 +7,7 @@
     <title>Panel de reservas</title>
     <link rel="stylesheet" href="{{ asset('css/styles.index-client.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
 </head>
 
@@ -35,26 +36,25 @@
         @if ($restaurantId)
         <form method="GET" action="{{ route('reservas.filtrar', ['id' => $restaurantId]) }}" class="filter-bar mb-4">
 
-
             <div class="filter-group">
-                <label for="filter-date">📅 Fecha</label>
-                <input type="date" id="filter-date" name="date" value="{{ $selectedDate ?? '' }}">
+                <label for="filter-date"><i class="bi bi-calendar-event"></i> Fecha</label>
+                <input type="date" id="filter-date" name="date" value="{{ $selectedDate ?? date('Y-m-d') }}">
             </div>
 
             <div class="filter-group">
-                <label for="filter-time">⏰ Hora</label>
+                <label for="filter-time"><i class="bi bi-clock"></i> Hora</label>
                 <input type="time" id="filter-time" name="time" value="{{ $timeFilter ?? '' }}">
             </div>
 
             <div class="filter-group">
-                <label for="filter-search">👤 Nombre</label>
+                <label for="filter-search"><i class="bi bi-person"></i> Nombre</label>
                 <input type="text" id="filter-search" name="search" placeholder="Nombre del cliente" value="{{ $nameFilter ?? '' }}">
             </div>
 
             <button type="submit" class="btn-filtrar">Filtrar</button>
 
             @if($timeFilter || $nameFilter || (!empty($selectedDate) && $selectedDate != date('Y-m-d')))
-            <a href="{{ route('reservas.index', ['id' => Auth::id()]) }}" class="btn-limpiar">Limpiar</a>
+            <a href="{{ route('reservas.index', ['id' => Auth::guard('admin')->id()]) }}" class="btn-limpiar">Limpiar</a>
             @endif
 
             {{-- filtros --}}
@@ -90,7 +90,6 @@
         $bookingDateTime = \Carbon\Carbon::parse($booking->booking_date . ' ' . $booking->booking_time);
         $hasArrived = $booking->arrival;
 
-        // Lógica para clase CSS de la tarjeta
         $cardClass = '';
         if ($hasArrived) {
         $cardClass = 'bg-confirmed';
@@ -116,22 +115,20 @@
                         <div>{{ $booking->contact_phone }}</div>
                         <div class="status-icon">
                             @if ($hasArrived)
-                            <p class="llegar">✅ Llegó</p>
+                            <p class="llegar">Llegó</p>
                             @else
                             <button
                                 type="button"
                                 class="estado-pendiente-btn marcar-llegada"
                                 data-id="{{ $booking->id }}">
-                                ⏱️ Pendiente
+                                <i class="bi bi-hourglass-split"></i> Pendiente
                             </button>
                             @endif
                         </div>
                     </div>
                 </div>
             </div>
-
         </a>
-
 
         @empty
         <p>No hay reservas para los criterios seleccionados.</p>
@@ -178,6 +175,7 @@
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
+                                'Accept': 'application/json',
                                 'X-CSRF-TOKEN': token
                             },
                             body: JSON.stringify({})
@@ -185,26 +183,12 @@
                         .then(res => res.json())
                         .then(data => {
                             if (data.success) {
-                                const card = document.querySelector(`.card[data-reserva-id="${idReserva}"]`);
-
-                                if (!card) return;
-
-                                // Cambiar clase a bg-confirmed
-                                card.classList.remove('bg-pending', 'bg-delayed', 'bg-arrived');
-                                card.classList.add('bg-confirmed');
-
-                                // Reemplazar el botón por el texto
-                                const statusDiv = card.querySelector('.status-icon');
-                                statusDiv.innerHTML = `<p class="llegar">✅ Llegó</p>`;
-
-                                // Si el toggle está activo, ocultar inmediatamente
-                                if (toggleLlegadas.checked) {
-                                    card.style.display = 'none';
-                                }
+                                window.location.href = window.location.href;
                             } else {
                                 alert("Error al marcar la llegada.");
                             }
                         })
+
                         .catch(() => console.log("Error de red al intentar marcar como llegada."));
                 });
             });

@@ -32,7 +32,7 @@
 
 <body>
     <div class="container mt-4">
-        <h2 class="mb-4">Reservas de {{ $user->name }} {{ $user->email }}</h2>
+        <h2 class="mb-4">Reservas de {{ $user->name }} - {{ $user->email }}</h2>
 
         @if ($reservas->count())
         <table class="table table-bordered table-hover shadow-sm bg-white">

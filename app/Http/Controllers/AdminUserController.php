@@ -11,7 +11,25 @@ class AdminUserController extends Controller
     public function index()
     {
         $usuarios = User::withCount('bookings')->get();
-        return view('admin.users.index', compact('usuarios'));
+        $hoy = \Carbon\Carbon::now();
+        $usuariosActualizados = [];
+
+        foreach ($usuarios as $usuario) {
+            if ($usuario->payment_date && $usuario->is_active_payment) {
+                $fechaExpiracion = \Carbon\Carbon::parse($usuario->payment_date)->addYear();
+
+                if ($hoy->greaterThan($fechaExpiracion)) {
+                    $usuario->is_active_payment = false;
+                    $usuario->save();
+                    $usuariosActualizados[] = $usuario->name; // Guardamos nombres actualizados
+                }
+            }
+        }
+
+        return view('admin.users.index', [
+            'usuarios' => $usuarios,
+            'usuariosActualizados' => $usuariosActualizados
+        ]);
     }
 
     public function togglePago(User $user)
@@ -44,11 +62,13 @@ public function create()
             'phone'          => 'required|string|max:20',
             'max_capacity'   => 'required|integer|min:1',
             'payment_date'   => 'nullable|date',
+            'slogan'         => 'nullable|string|max:255', 
             'password'       => 'required|string|min:6',
         ]);
 
+
         $validated['password'] = Hash::make($validated['password']);
-        $validated['is_active_payment'] = true; // o false según lo que quieras por defecto
+        $validated['is_active_payment'] = true; 
 
         User::create($validated);
 

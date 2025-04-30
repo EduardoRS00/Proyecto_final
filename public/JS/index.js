@@ -1,6 +1,7 @@
 // index.js
 let disponibilidadMes = {}; // Objeto donde guardaremos TODA la disponibilidad del año completo
 const hoy = new Date();
+hoy.setHours(0, 0, 0, 0);
 const fechaLimite = new Date();
 fechaLimite.setFullYear(hoy.getFullYear() + 1);
 
@@ -31,6 +32,7 @@ const picker = new Litepicker({
 async function precargarDisponibilidad() {
     const restauranteId = document.getElementById("data-restaurante").dataset.restauranteId;
     const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
     const yearActual = hoy.getFullYear();
     let mesActual = hoy.getMonth() + 1;
 
@@ -77,6 +79,8 @@ function pintarDiasPasados() {
     }, 5);
 }
 
+
+
 function obtenerFranjasDesdeHora(horaInicial) {
     const franjas = [];
     const [h, m] = horaInicial.split(":").map(Number);
@@ -110,15 +114,29 @@ function actualizarDisponibilidadHoras() {
         return;
 
     const botonesHora = document.querySelectorAll(".boton-opcion[data-hora]");
+    const hoyFecha = new Date();
+    const fechaSeleccionada = new Date(selectedDate);
+    const esHoy = hoyFecha.toDateString() === fechaSeleccionada.toDateString();
 
     botonesHora.forEach((boton) => {
         const hora = boton.dataset.hora;
         const franjas = obtenerFranjasDesdeHora(hora);
 
-        const disponible = franjas.every((franja) => {
+        let disponible = franjas.every((franja) => {
             const ocupadas = disponibilidadMes[selectedDate]?.[franja] ?? 0;
             return ocupadas + numPersonas <= maxCapacity;
         });
+
+        if (esHoy) {
+            const ahora = new Date();
+            const [h, m] = hora.split(":").map(Number);
+            const horaReserva = new Date();
+            horaReserva.setHours(h, m, 0, 0);
+
+            if (horaReserva <= ahora) {
+                disponible = false;
+            }
+        }
 
         if (!disponible) {
             boton.disabled = true;

@@ -347,7 +347,54 @@
 
   </script>
 
+  <div id="chatbot" class="chatbot-container">
+    <div class="chatbot-header" onclick="toggleChatbot()">
+      <span>Chat</span>
+      <button class="chatbot-toggle" id="toggle-chat">+</button>
+    </div>
+    <div id="chatbot-body" class="chatbot-body" style="display: none;">
+      <div class="chatbot-messages" id="chatbot-messages">
+        <div class="message bot">¿En qué te puedo ayudar?</div>
+      </div>
+      <div class="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Escríbeme ..." />
+        <button onclick="enviarMensaje()">Enviar</button>
+      </div>
+    </div>
+  </div>
 
+  <script>
+    function toggleChatbot() {
+      const body = document.getElementById('chatbot-body');
+      const toggle = document.getElementById('toggle-chat');
+      const isVisible = body.style.display === 'block';
+      body.style.display = isVisible ? 'none' : 'block';
+      toggle.textContent = isVisible ? '+' : '−';
+    }
+
+    function enviarMensaje() {
+      const input = document.getElementById('chatbot-input');
+      const mensaje = input.value.trim();
+      if (!mensaje) return;
+
+      // Mostrar mensaje del usuario
+      const messages = document.getElementById('chatbot-messages');
+      const msgUser = document.createElement('div');
+      msgUser.className = 'message user';
+      msgUser.textContent = mensaje;
+      messages.appendChild(msgUser);
+
+      input.value = '';
+
+      // Simular respuesta (más adelante se conecta a DeepSeek)
+      const msgBot = document.createElement('div');
+      msgBot.className = 'message bot';
+      msgBot.textContent = 'Pensando...';
+      messages.appendChild(msgBot);
+
+      // Aquí conectarás con DeepSeek más adelante
+    }
+  </script>
 
 </body>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use Illuminate\Support\Carbon;
 
 class AdminController extends Controller
 {
@@ -17,57 +18,45 @@ class AdminController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-        $user = Auth::user(); // Restaurante logueado
+            $user = Auth::user(); // Restaurante logueado
+           
+            if (!$user->is_active_payment || (isset($user->payment_date) && \Carbon\Carbon::parse($user->payment_date)->addYear()->lt(now()))) {
+                Auth::logout(); // Cierra la sesión
+                return redirect()->route('login')->withErrors(['email' => 'Tu suscripción ha caducado. Contacta con administración.']);
+            }
 
-        // Obtener filtros desde la URL
-        $selectedDate = $request->input('date');
-        $timeFilter = $request->input('time');
-        $nameFilter = $request->input('search');
+            // Sigue el flujo normal si tiene pago válido
+            $selectedDate = $request->input('date');
+            $timeFilter = $request->input('time');
+            $nameFilter = $request->input('search');
 
-        // Empezar con las reservas del restaurante autenticado
-        $query = Booking::where('restaurant_id', $user->id);
+            $query = Booking::where('restaurant_id', $user->id)
+                ->whereDate('booking_date', \Carbon\Carbon::today());
 
-        // Aplicar filtros si están presentes
-        if (!empty($selectedDate)) {
-            $query->where('booking_date', $selectedDate);
+            $bookings = $query->get();
+
+            $restaurantName = $user->name;
+            $totalPax = $bookings->sum('num_people');
+            $totalMesas = $bookings->count();
+
+            return view('client.index', compact(
+                'bookings',
+                'restaurantName',
+                'totalPax',
+                'totalMesas',
+                'selectedDate',
+                'timeFilter',
+                'nameFilter'
+            ));
         }
 
-        if (!empty($timeFilter)) {
-            $query->where('booking_time', $timeFilter);
-        }
-
-        if (!empty($nameFilter)) {
-            $query->where(function ($q) use ($nameFilter) {
-                $q->where('customer_name', 'like', "%$nameFilter%")
-                    ->orWhere('customer_lastname', 'like', "%$nameFilter%");
-            });
-        }
-
-        // Obtener resultados finales
-        $bookings = $query->get();
-
-        // Datos adicionales para la vista
-        $restaurantName = $user->name;
-        $totalPax = $bookings->sum('num_people');
-        $totalMesas = $bookings->count(); // Puedes cambiar esto si tienes lógica para mesas
-
-        // Pasar todo a la vista
-        return view('client.index', compact(
-            'bookings',
-            'restaurantName',
-            'totalPax',
-            'totalMesas',
-            'selectedDate',
-            'timeFilter',
-            'nameFilter'
-        ));
-        }
-
-        // Si las credenciales fallan
+        // Credenciales incorrectas
         return back()->withErrors([
             'email' => 'Credenciales incorrectas.',
         ])->withInput();
     }
+
+
     public function marcarLlegada(Request $request, $id)
     {
         $booking = Booking::findOrFail($id);

@@ -24,7 +24,7 @@ Route::post('/reservar', [BookingController::class, 'store'])->name('reservar');
 Route::get('/index', [AdminController::class, 'index'])->name('index');
 
 Route::get('/restaurante/{id}', [BookingAdminController::class, 'index'])->name('reservas.index');
-Route::get('/reservas/{id}/filtrar', [BookingAdminController::class, 'filter'])->name('reservas.filtrar');
+Route::get('/reservas/{id}/filtrar', action: [BookingAdminController::class, 'filter'])->name('reservas.filtrar');
 
 Route::get('/login', [AdminController::class, 'login'])->name('login');
 Route::post('/index', [AdminController::class, 'index'])->name('login.process');
@@ -52,7 +52,19 @@ Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name(
 Route::post('/admin/users/store', [AdminUserController::class, 'alta'])->name('admin.users.store');
 
 
-//Route::get('/booking/availability/{year}/{month}', [BookingController::class, 'monthAvailability']);
-
 // En routes/web.php
-Route::get('/booking/availability/{restaurant}/{year}/{month}', [App\Http\Controllers\BookingController::class, 'monthAvailability']);
+Route::get('/booking/availability/{restaurant}/{year}/{month}', [BookingController::class, 'monthAvailability']);
+
+// Ruta para mostrar formulario de edición (detalles de reserva)
+Route::get('/reservas/{id}/edit', [BookingAdminController::class, 'edit'])
+    ->name('reservas.edit');
+
+// Ruta para actualizar una reserva existente
+Route::put('/reservas/{id}', [BookingAdminController::class, 'update'])
+    ->name('reservas.update');
+
+// Ruta para eliminar una reserva existente
+Route::delete('/reservas/{id}', [BookingAdminController::class, 'destroy'])
+    ->name('reservas.destroy');Route::get('/reservas', [BookingAdminController::class, 'index'])->name('reservas.index');
+
+Route::put('/reservas/{id}/no-llegado', [BookingAdminController::class, 'marcarNoLlegado'])->name('reservas.marcarNoLlegado');
