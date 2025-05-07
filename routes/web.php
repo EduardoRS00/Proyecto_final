@@ -6,6 +6,13 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingAdminController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\ChatbotController;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Rutas públicas (Clientes)
@@ -68,3 +75,16 @@ Route::delete('/reservas/{id}', [BookingAdminController::class, 'destroy'])
     ->name('reservas.destroy');Route::get('/reservas', [BookingAdminController::class, 'index'])->name('reservas.index');
 
 Route::put('/reservas/{id}/no-llegado', [BookingAdminController::class, 'marcarNoLlegado'])->name('reservas.marcarNoLlegado');
+
+Route::post('/chatbot/enviar', [ChatbotController::class, 'enviar']);
+
+Route::get('/set-locale/{lang}', function ($lang) {
+    if (!in_array($lang, ['en', 'es'])) {
+        abort(400, 'Idioma no soportado');
+    }
+
+    Session::put('locale', $lang);
+    App::setLocale($lang);
+
+    return redirect()->back(); // o redirect('/');
+});

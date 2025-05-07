@@ -10,10 +10,10 @@ const picker = new Litepicker({
     inlineMode: true,
     singleMode: true,
     format: "YYYY-MM-DD",
-    lang: "es-ES",
+    lang: currentLang === "en" ? "en-US" : "es-ES",
     autoApply: true,
     minDate: "2025-01-01",
-    maxDate:fechaLimite,
+    maxDate: fechaLimite,
     setup: (picker) => {
         picker.on("render", () => {
             pintarDiasPasados();
@@ -21,8 +21,10 @@ const picker = new Litepicker({
         });
 
         picker.on("selected", (date) => {
-            document.getElementById("fecha_reserva").value = date.format("YYYY-MM-DD");
-            document.getElementById("formulario-reserva").style.display = "block";
+            document.getElementById("fecha_reserva").value =
+                date.format("YYYY-MM-DD");
+            document.getElementById("formulario-reserva").style.display =
+                "block";
             actualizarDisponibilidadHoras();
         });
     },
@@ -50,9 +52,9 @@ async function precargarDisponibilidad() {
                 ...data,
             };
 
-            console.log(`✅ Aforo cargado para ${year}-${month}`, data);
+            console.log(`Aforo cargado para ${year}-${month}`, data);
         } catch (err) {
-            console.error("❌ Error al precargar disponibilidad:", err);
+            console.error("Error al precargar disponibilidad:", err);
         }
     }
 
@@ -244,8 +246,7 @@ document
                 Object.values(campos).some((val) => val === "" || val === false)
             ) {
                 e.preventDefault();
-                mensajeError.innerText =
-                    "Todos los campos requeridos deben estar completos.";
+               mensajeError.innerText = mensajes.required_fields[currentLang];
                 mensajeError.style.display = "block";
                 return;
             }
@@ -254,18 +255,88 @@ document
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(campos.email)) {
                 e.preventDefault();
-                alert("Introduce un email válido.");
+                alert(mensajes.invalid_email[currentLang]);
                 return;
             }
 
             // Validar teléfono
-            const telRegex = /^[0-9]{6,15}$/;
+            const telRegex = /^[0-9]{7,12}$/;
             if (!telRegex.test(campos.telefono)) {
                 e.preventDefault();
-                alert(
-                    "Introduce un teléfono válido (solo números, mínimo 6 dígitos)."
-                );
+                alert(mensajes.invalid_phone[currentLang]);
                 return;
             }
 
         });
+
+
+function toggleChatbot() {
+    const body = document.getElementById("chatbot-body");
+    const toggle = document.getElementById("toggle-chat");
+    const isVisible = body.style.display === "block";
+    body.style.display = isVisible ? "none" : "block";
+    toggle.textContent = isVisible ? "+" : "−";
+}
+
+async function enviarMensaje() {
+    console.log(" Idioma detectado:", navigator.language);
+
+    // 💡 Asegurarse de que el chatbot esté desplegado
+    const body = document.getElementById("chatbot-body");
+    if (body.style.display === "none" || body.style.display === "") {
+        toggleChatbot(); // Despliega el chatbot si estaba cerrado
+    }
+
+    const input = document.getElementById("chatbot-input");
+    const mensaje = input.value.trim();
+    if (!mensaje) return;
+
+    const messages = document.getElementById("chatbot-messages");
+    const msgUser = document.createElement("div");
+    msgUser.className = "message user";
+    msgUser.textContent = mensaje;
+    messages.appendChild(msgUser);
+
+    input.value = "";
+
+    const msgBot = document.createElement("div");
+    msgBot.className = "message bot";
+    msgBot.textContent = "Pensando...";
+    messages.appendChild(msgBot);
+
+    // Scroll automático hacia abajo
+    messages.scrollTop = messages.scrollHeight;
+
+    // Detectar idioma automáticamente
+    const lang = currentLang; // usa el idioma seleccionado en Laravel
+
+    try {
+        const response = await fetch("/chatbot/enviar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+            },
+            body: JSON.stringify({ message: mensaje, lang: lang }),
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            msgBot.textContent =
+                "Error al procesar la respuesta: " + data.error;
+        } else if (data.choices && data.choices[0]?.message?.content) {
+            msgBot.textContent = data.choices[0].message.content;
+        } else {
+            msgBot.textContent = "Respuesta no válida del chatbot.";
+        }
+    } catch (error) {
+        msgBot.textContent = "Error al conectar con el servidor.";
+        console.error(error);
+    }
+
+    // Scroll automático después de la respuesta
+    messages.scrollTop = messages.scrollHeight;
+}

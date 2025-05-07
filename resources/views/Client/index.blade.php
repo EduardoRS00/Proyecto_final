@@ -13,9 +13,7 @@
 
 <body>
     <div class="container my-4">
-        <!-- Saludo con el nombre del restaurante -->
         <h2 class="mb-4">¡Hola, {{ $restaurantName }}!</h2>
-
         <div class="d-flex flex-wrap gap-3 mb-4 summary-buttons">
             <a href="#listado-reservas" class="btn btn-outline-primary flex-fill">
                 {{ $totalPax }} Pax
@@ -24,7 +22,6 @@
                 {{ $totalMesas }} Mesas
             </a>
         </div>
-
     </div>
 
     <br>
@@ -93,14 +90,10 @@
         $cardClass = '';
         if ($hasArrived) {
         $cardClass = 'bg-confirmed';
-        } elseif ($bookingDateTime->addMinutes(25)->lt($now)) {
-        $cardClass = 'bg-delayed'; // más de 20 minutos tarde
-        } elseif ($booking->status === 'pending') {
-        $cardClass = 'bg-pending';
-        } elseif ($booking->status === 'no_show') {
-        $cardClass = 'bg-no-show';
+        } elseif ($bookingDateTime->addMinutes(20)->lt($now)) {
+        $cardClass = 'bg-delayed'; 
         } else {
-        $cardClass = 'bg-arrived'; // Confirmada pero en hora
+        $cardClass = 'bg-arrived';
         }
         @endphp
 

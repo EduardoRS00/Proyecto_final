@@ -1,0 +1,128 @@
+[
+    {
+        "keywords": ["horario", "abiertos", "abren", "abris", "cierran"],
+        "respuesta": "Abrimos todos los días de 9:00 a 22:30."
+    },
+    {
+        "keywords": ["perro", "mascota", "animal"],
+        "respuesta": "Las mascotas están permitidas solo en la terraza."
+    },
+    {
+        "keywords": ["niños", "infantil", "trona", "menu infantil"],
+        "respuesta": "Sí, tenemos menú infantil y tronas."
+    },
+    {
+        "keywords": ["cancelar", "anular", "borrar"],
+        "respuesta": "Puedes cancelar llamando por teléfono al +34 649 345 546."
+    },
+    {
+        "keywords": ["tarjeta", "efectivo", "pago", "pagar"],
+        "respuesta": "Sí, aceptamos pagos en tarjeta y efectivo."
+    },
+    {
+        "keywords": ["vegetariana", "vegano"],
+        "respuesta": "Sí, ofrecemos opciones vegetarianas y veganas."
+    },
+    {
+        "keywords": ["reserva", "reservar", "mesa"],
+        "respuesta": "Puedes hacer la reserva desde esta misma página rellenando el formulario."
+    },
+    {
+        "keywords": ["aparcar", "parking", "coche", "estacionar"],
+        "respuesta": "No disponemos de aparcamiento privado, pero no hay dificultad en encontrar aparcamiento."
+    },
+    {
+        "keywords": ["acceso", "silla de ruedas", "minusválido"],
+        "respuesta": "El restaurante es accesible para sillas de ruedas."
+    },
+    {
+        "keywords": ["desayuno", "desayunar"],
+        "respuesta": "No hacemos reservas para desayunos."
+    },
+    {
+        "keywords": ["comida", "menu", "carta", "almuerzo"],
+        "respuesta": "Puedes elegir menú o comer a la carta."
+    },
+    {
+        "keywords": ["cocina", "hora cocina", "cocina cerrada"],
+        "respuesta": "La cocina está cerrada de 16:00 a 18:30."
+    },
+    {
+        "keywords": [
+            "gris",
+            "completo",
+            "aforo",
+            "deshabilitado",
+            "deshabilitada"
+        ],
+        "respuesta": "Las horas en gris están deshabilitadas porque el aforo está completo."
+    },
+    {
+        "keywords": ["Hola", "ayuda", "necesito"],
+        "respuesta": "Bienvenido al chat-boot del restaurante en que te puedo ayudar?"
+    },
+    {
+        "keywords": ["disponible", "disponibilidad", "libre"],
+        "respuesta": "Puedes ver la disponibilidad del restaurantes seleccionando una fecha y las personas que sereis."
+    },
+    {
+        "keywords": ["telefono", "contacto"],
+        "respuesta": "Puedes llamarnos al +34 649 345 546"
+    },
+    {
+        "keywords": ["ubicacion", "ubicado", "localizacion", "localizado"],
+        "respuesta": "Nos encontraras en avenida de los naranjos 3"
+    },
+    {
+        "keywords": ["wifi", "internet", "clave wifi", "contraseña wifi"],
+        "respuesta": "Sí, disponemos de wifi gratuito. Pregunta al personal para obtener la clave."
+    },
+    {
+        "keywords": ["terraza", "fuera", "exterior"],
+        "respuesta": "Disponemos de terraza al aire libre donde también se puede comer."
+    },
+    {
+        "keywords": ["sombra", "sombrilla", "sol", "calor"],
+        "respuesta": "La terraza tiene sombrillas y zonas con sombra para mayor comodidad."
+    },
+    {
+        "keywords": ["menu del día", "menu diario", "precio menu"],
+        "respuesta": "Nuestro menú del día cuesta 14,90€ e incluye primero, segundo, bebida y postre."
+    },
+    {
+        "keywords": ["climatizacion", "calefacción", "aire", "frio", "calor"],
+        "respuesta": "El local está climatizado con aire acondicionado y calefacción según la temporada."
+    },
+    {
+        "keywords": ["celebrar", "cumpleaños", "grupo grande", "evento"],
+        "respuesta": "Puedes celebrar eventos o cumpleaños. Llámanos para más información o disponibilidad."
+    },
+    {
+        "keywords": ["bebidas", "bar", "cerveza", "vino"],
+        "respuesta": "Tenemos una amplia carta de bebidas, incluyendo cervezas artesanas y vinos locales."
+    },
+    {
+        "keywords": ["postres", "dulce", "tarta", "helado"],
+        "respuesta": "Sí, contamos con una selección de postres caseros y helados."
+    },
+    {
+        "keywords": ["baño", "servicio", "aseo"],
+        "respuesta": "Los baños están al fondo del local, pasando la barra."
+    },
+    {
+        "keywords": ["abrís hoy", "estáis abiertos", "cerrado", "abierto"],
+        "respuesta": "Abrimos todos los días de la semana. Si tienes dudas, puedes llamarnos para confirmar."
+    },
+    {
+        "keywords": ["idiomas", "hablan ingles", "otros idiomas"],
+        "respuesta": "Sí, parte del español nuestro personal habla inglés y podemos atenderte sin problema."
+    },
+    {
+        "keywords": ["sin gluten", "celiaco", "gluten"],
+        "respuesta": "Sí, tenemos opciones sin gluten. Por favor, infórmanos al hacer tu reserva."
+    },
+    {
+        "keywords": ["hora de cierre", "a que hora cierran"],
+        "respuesta": "Cerramos a las 22:30 la cocina y a las 00:00 el restaurante todos los días."
+    }
+]

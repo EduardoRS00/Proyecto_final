@@ -1,0 +1,122 @@
+[
+    {
+        "keywords": ["schedule", "open", "opening", "close", "closing"],
+        "respuesta": "We are open every day from 9:00 AM to 10:30 PM."
+    },
+    {
+        "keywords": ["dog", "pet", "animal"],
+        "respuesta": "Pets are allowed only on the terrace."
+    },
+    {
+        "keywords": ["children", "kids", "child menu", "high chair"],
+        "respuesta": "Yes, we offer a kids' menu and have high chairs available."
+    },
+    {
+        "keywords": ["cancel", "remove", "delete", "change"],
+        "respuesta": "You can cancel your reservation by calling us at +34 649 345 546."
+    },
+    {
+        "keywords": ["card", "cash", "payment", "pay"],
+        "respuesta": "Yes, we accept payments by card and cash."
+    },
+    {
+        "keywords": ["vegetarian", "vegan"],
+        "respuesta": "Yes, we offer vegetarian and vegan options."
+    },
+    {
+        "keywords": ["reservation", "book", "table"],
+        "respuesta": "You can book a table on this page using the reservation form."
+    },
+    {
+        "keywords": ["parking", "car", "park"],
+        "respuesta": "We do not have private parking, but it's easy to find nearby."
+    },
+    {
+        "keywords": ["access", "wheelchair", "disabled"],
+        "respuesta": "The restaurant is accessible for wheelchairs."
+    },
+    {
+        "keywords": ["breakfast", "morning"],
+        "respuesta": "We do not accept reservations for breakfast."
+    },
+    {
+        "keywords": ["food", "menu", "lunch", "dishes"],
+        "respuesta": "You can choose from the menu or order à la carte."
+    },
+    {
+        "keywords": ["kitchen", "kitchen hours", "closed kitchen"],
+        "respuesta": "The kitchen is closed from 4:00 PM to 6:30 PM."
+    },
+    {
+        "keywords": ["full", "gray", "capacity", "unavailable", "disabled"],
+        "respuesta": "The gray time slots are unavailable due to full capacity."
+    },
+    {
+        "keywords": ["hello", "hi", "help", "need"],
+        "respuesta": "Welcome to the restaurant chatbot! How can I help you?"
+    },
+    {
+        "keywords": ["available", "availability", "free"],
+        "respuesta": "You can check availability by selecting a date and number of people."
+    },
+    {
+        "keywords": ["phone", "contact"],
+        "respuesta": "You can call us at +34 649 345 546."
+    },
+    {
+        "keywords": ["location", "address", "where", "located"],
+        "respuesta": "You can find us at Avenida de los Naranjos 3."
+    },
+    {
+        "keywords": ["wifi", "internet", "password", "wifi password"],
+        "respuesta": "Yes, we offer free wifi. Ask our staff for the password."
+    },
+    {
+        "keywords": ["terrace", "outside", "outdoor"],
+        "respuesta": "We have an outdoor terrace where you can also dine."
+    },
+    {
+        "keywords": ["shade", "umbrella", "sun", "heat"],
+        "respuesta": "Our terrace has umbrellas and shaded areas for your comfort."
+    },
+    {
+        "keywords": ["daily menu", "lunch menu", "menu price"],
+        "respuesta": "Our daily menu is €14.90 and includes a starter, main dish, drink, and dessert."
+    },
+    {
+        "keywords": ["air conditioning", "heating", "climate", "hot", "cold"],
+        "respuesta": "The restaurant is air-conditioned and heated depending on the season."
+    },
+    {
+        "keywords": ["celebrate", "birthday", "group", "event"],
+        "respuesta": "You can celebrate events or birthdays here. Call us for more details."
+    },
+    {
+        "keywords": ["drinks", "bar", "beer", "wine"],
+        "respuesta": "We offer a variety of drinks including craft beers and local wines."
+    },
+    {
+        "keywords": ["dessert", "cake", "sweet", "ice cream"],
+        "respuesta": "Yes, we have homemade desserts and ice cream."
+    },
+    {
+        "keywords": ["bathroom", "toilet", "restroom"],
+        "respuesta": "Bathrooms are located at the back of the restaurant, past the bar."
+    },
+    {
+        "keywords": ["open today", "closed", "open now"],
+        "respuesta": "We are open every day. If unsure, feel free to call us to confirm."
+    },
+    {
+        "keywords": ["language", "english", "speak english"],
+        "respuesta": "Yes, our staff speaks English and can assist you."
+    },
+    {
+        "keywords": ["gluten", "celiac", "gluten free"],
+        "respuesta": "Yes, we offer gluten-free options. Let us know when you book."
+    },
+    {
+        "keywords": ["closing time", "what time do you close"],
+        "respuesta": "The kitchen closes at 10:30 PM and the restaurant at midnight every day."
+    }
+]
