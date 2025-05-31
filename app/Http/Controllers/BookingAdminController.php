@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingAdminController extends Controller
 {
-    // Listado de reservas del restaurante logueado
     public function index(Request $request)
     {
         $restaurantId = auth()->id();
@@ -51,15 +50,11 @@ class BookingAdminController extends Controller
     $booking = Booking::findOrFail($id);
     $booking->arrival = true;
     $booking->save();
-
-    // Solo devuelve respuesta si es AJAX
     if ($request->expectsJson()) {
         return response()->json(['success' => true]);
     }
-
-    // Si por alguna razón se accede desde formulario normal, redirige
     return redirect()->back()->with('success', 'Reserva marcada como llegada.');
-} // <<<<---- aquí cerramos bien el método de llegada
+}
 
     public function filter(Request $request, $id)
     {
@@ -71,16 +66,11 @@ class BookingAdminController extends Controller
 
         $timeFilter = $request->input('time');
         $nameFilter = $request->input('search');
-
-        // Consulta inicial
         $query = Booking::with('user')
             ->where('restaurant_id', $id);
-
-        // Si no hay ningún filtro
         if (!$request->filled('date') && !$request->filled('time') && !$request->filled('search')) {
             $query->whereDate('booking_date', $today);
         } else {
-            // Aplicar filtros
             if ($request->filled('date')) {
                 $query->whereDate('booking_date', $selectedDate);
             }
@@ -97,20 +87,14 @@ class BookingAdminController extends Controller
             }
         }
 
-        // Ordenar
         $query->orderBy('arrival')
             ->orderBy('booking_date')
             ->orderBy('booking_time');
-
-
-        // Obtener resultados
         $bookings = $query->get();
 
-        // Totales
         $totalPax = $bookings->sum('num_people');
         $totalMesas = $bookings->count();
 
-        // Restaurante
         $restaurant = auth()->user();
 
         return view('Client.index', [
@@ -129,13 +113,11 @@ class BookingAdminController extends Controller
 
 
 
-    // Actualizar estado de reserva (confirmada / no-show)
+
     public function updateStatus(Request $request, $id)
     {
-        // Cambiar estado en DB
+        // 
     }
-
-    // Editar una reserva
     public function edit($id)
     {
         $reserva = Booking::with('user')->findOrFail($id);
@@ -184,7 +166,6 @@ class BookingAdminController extends Controller
             'arrival'
         ]);
 
-        // 🔥 Convertimos arrival correctamente:
         if (isset($datos['arrival']) && $datos['arrival'] === '1') {
             $datos['arrival'] = 1;
         } else {
@@ -200,13 +181,8 @@ class BookingAdminController extends Controller
 
     public function destroy($id)
     {
-        // Buscar la reserva por ID o lanzar 404 si no existe
         $reserva = Booking::findOrFail($id);
-
-        // Eliminar la reserva de la base de datos
         $reserva->delete();
-
-        // Redirigir a la lista de reservas con mensaje de éxito
         return redirect()
             ->route('reservas.index', $reserva->restaurant_id ?? null)
             ->with('success', 'Reserva eliminada correctamente.');

@@ -15,7 +15,6 @@
         <div class="card booking-card mx-auto">
             <div class="card-body">
 
-                <!-- DATOS NORMALES -->
                 <div id="datos-reserva">
                     <div><strong>Nombre:</strong> {{ $reserva->customer_name }} {{ $reserva->customer_lastname }}</div>
                     <hr>
@@ -59,7 +58,6 @@
                     <div><strong>Llegada:</strong> {{ $reserva->arrival  ? 'Sí' : 'Pendiente por llegar' }}</div>
                     <hr>
 
-                    <!-- BOTONES de Modificar y Eliminar -->
                     <div class="text-center mt-4">
                         <a href="{{ route(name: 'reservas.index') }}" class="volver">Volver al Listado</a>
                         <button class="btn btn-warning" onclick="mostrarFormulario()">Modificar Reserva</button>
@@ -73,7 +71,6 @@
                     </div>
                 </div>
 
-                <!-- FORMULARIO EDITABLE (OCULTO AL PRINCIPIO) -->
                 <div id="formulario-edicion" style="display: none;">
                     <form action="{{ route('reservas.update', $reserva->id) }}" method="POST">
                         @csrf
@@ -180,9 +177,6 @@
                             <button type="submit" class="btn btn-success">Guardar cambios</button>
 
 
-                            <!-- Botón de cancelar -->
-
-
                     </form>
                     @if ($reserva->arrival)
                     <form method="POST" action="{{ route('reservas.marcarNoLlegado', $reserva->id) }}" style="display:inline-block;">
@@ -205,8 +199,6 @@
 
     </div>
 
-
-    <!-- Script para mostrar formulario -->
     <script>
         function mostrarFormulario() {
             document.getElementById('datos-reserva').style.display = 'none';

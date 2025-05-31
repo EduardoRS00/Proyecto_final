@@ -15,7 +15,7 @@
     "general.menu": "Menú",
     "general.a_la_carte": "Carta",
     "general.comments": "Comentarios",
-    "general.write_comment": "Escribe tu comentario",
+    "general.write_comment": "Escribe tu comentario (Opcional)",
     "general.required_fields": "Todos los campos obligatorios deben llenarse antes de continuar.",
     "general.reserve": "Reservar",
     "general.firstname": "Nombre",

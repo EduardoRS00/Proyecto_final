@@ -17,7 +17,6 @@ class BookingController extends Controller
     }
    public function create($id)
     {
-        // Buscar restaurante y mostrar formulario
     }
 
     // Guardar reserva
@@ -63,7 +62,6 @@ class BookingController extends Controller
     }
 
 
-    // Mostrar página de confirmación
     public function confirm()
     {
         return view('bookings.confirm');
@@ -77,7 +75,6 @@ class BookingController extends Controller
         $restaurante = User::findOrFail($restaurant);
         $maxCap = $restaurante->max_capacity;
 
-        // Obtener reservas del mes actual de ese restaurante
         $reservas = Booking::where('restaurant_id', $restaurante->id)
             ->whereBetween('booking_date', [$start->format('Y-m-d'), $end->format('Y-m-d')])
             ->get();
@@ -86,18 +83,16 @@ class BookingController extends Controller
 
         foreach ($reservas as $reserva) {
             $inicio = Carbon::parse("{$reserva->booking_date} {$reserva->booking_time}");
-            $fin = $inicio->copy()->addHours(2); // Duración de la reserva: 2 horas
+            $fin = $inicio->copy()->addHours(2);
             $ultimaHora = Carbon::parse("{$reserva->booking_date} 23:45");
 
             for ($slot = $inicio->copy(); $slot < $fin; $slot->addMinutes(15)) {
                 if ($slot->greaterThan($ultimaHora)) {
-                    break; // Evitar bloques más allá de las 23:45
+                    break; 
                 }
 
                 $fechaKey = $slot->format('Y-m-d');
                 $horaKey  = $slot->format('H:i');
-
-                // Sumar ocupación por franja
                 $ocupacion[$fechaKey][$horaKey] = ($ocupacion[$fechaKey][$horaKey] ?? 0) + $reserva->num_people;
             }
         }

@@ -1,6 +1,6 @@
 .booking-card {
   background: #ffffff;
-  border-left: 6px solid #4caf50; /* verde para destacar */
+  border-left: 6px solid #4caf50; 
   border-radius: 16px;
   padding: 24px 30px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
@@ -60,7 +60,7 @@
         margin-bottom: 14px;
         border: 1px solid #ced4da;
         border-radius: 8px;
-        background-color: #fff; /* <<< Ojo aquí, blanco */
+        background-color: #fff; 
         font-size: 16px;
         transition: border-color 0.3s, box-shadow 0.3s;
     }
@@ -72,7 +72,7 @@ select{
   margin-bottom: 14px;
   border: 1px solid #ced4da;
   border-radius: 8px;
-  background-color: #fff; /* <<< Ojo aquí, blanco */
+  background-color: #fff; 
   font-size: 16px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -85,7 +85,6 @@ select{
         box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
     }
 
-    /* Estilos botones */
     .btn {
         padding: 10px 20px;
         font-size: 16px;
@@ -174,7 +173,7 @@ select{
 .volver:hover {
   background-color: #00720f;
   color: white;
-  transform: scale(1.1); /* <<< zoom suave */
+  transform: scale(1.1);
 }
 
 

@@ -21,7 +21,7 @@ class AdminUserController extends Controller
                 if ($hoy->greaterThan($fechaExpiracion)) {
                     $usuario->is_active_payment = false;
                     $usuario->save();
-                    $usuariosActualizados[] = $usuario->name; // Guardamos nombres actualizados
+                    $usuariosActualizados[] = $usuario->name; 
                 }
             }
         }
@@ -90,7 +90,7 @@ public function create()
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
-        $validated['is_active_payment'] = true; // o false según lo que quieras por defecto
+        $validated['is_active_payment'] = true;
 
         User::create($validated);
 

@@ -42,7 +42,6 @@ body{
   color: black !important;
 }
 
-/* Cuando está seleccionado */
 .boton-opcion.selected {
   background-color: #80b284 !important;
   color: white !important;
@@ -50,12 +49,10 @@ body{
 }
 
 
-/* Elimina sombras internas de cualquier elemento del calendario */
 .litepicker * {
   box-shadow: none !important;
 }
 
-/* Elimina bordes y rellenos que puedan quedar */
 .litepicker .container__months,
 .litepicker .container__main {
   padding: 0 !important;
@@ -227,9 +224,6 @@ body{
   }
 }
 
-
-
-/* MÓVIL: hasta 600px */
 @media (min-width: 401px) and (max-width: 600px) {
   .inicio-restaurante {
     text-align: center;
@@ -392,7 +386,6 @@ body{
   }
 }
 
-/* TABLET: entre 601px y 1024px */
 @media (min-width: 601px) and (max-width: 1024px) {
   .inicio-restaurante {
     text-align: center;
@@ -557,7 +550,6 @@ body{
   }
 }
 
-/* ORDENADOR: desde 1025px en adelante */
 @media (min-width: 1025px) and (max-width: 1550px){
   .inicio-restaurante {
     text-align: center;
@@ -911,22 +903,20 @@ body{
   }
 }
 
-
-/* Estado de franja casi llena (≥ 80% aforo) */
 .boton-opcion.casi-lleno {
-  background-color: #ffcc80 !important; /* naranja claro */
-  color: #000 !important;               /* texto oscuro para contraste */
+  background-color: #ffcc80 !important; 
+  color: #000 !important;             
 }
 
-/* Estado de franja no disponible (aforo completo) */
+
 .boton-opcion.no-disponible {
-  background-color: #ddd !important;  /* gris apagado */
+  background-color: #ddd !important; 
   color: #999 !important;
   cursor: not-allowed;
 }
-/* Si el botón está verdaderamente deshabilitado, asegurar estilo consistente */
+
 .boton-opcion.no-disponible:disabled {
-  opacity: 0.6;  /* ligeramente transparente para indicar deshabilitado */
+  opacity: 0.6;  
 }
 
 
@@ -948,7 +938,7 @@ body{
 }
 
 .boton-opcion.activo {
-  background-color: #80b284 !important; /* verde bootstrap */
+  background-color: #80b284 !important;
   color: white !important;
 }
 
@@ -975,23 +965,23 @@ body{
 }
 
 .boton-opcion.activo {
-    background-color: #4CAF50; /* Verde */
+    background-color: #4CAF50;
     color: white;
     font-weight: bold;
     border: 1px solid #3c8c3c;
 }
 
 .boton-opcion.no-disponible {
-    background-color: #d3d3d3 !important; /* Gris claro */
+    background-color: #d3d3d3 !important; 
     color: #888;
     cursor: not-allowed;
     opacity: 0.6;
-    pointer-events: none; /* Impide el click */
+    pointer-events: none; 
 }
 
 
 .boton-opcion.activo {
-  background-color: #90c695; /* Verde suave */
+  background-color: #90c695;
   color: white;
 }
 
@@ -1012,9 +1002,9 @@ body{
 .chatbot-container {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 10px;
   width: 100%;
-  max-width: 360px;
+  max-width: 350px;
   background-color: #fff;
   border: 2px solid #2f6657;
   border-radius: 20px;
@@ -1123,3 +1113,61 @@ body{
   color: #ffffff;
   transform: scale(1.05);
 }
+
+@media (max-width: 550px) {
+  .chatbot-container {
+    right: 5px;
+    max-width: 300px; 
+    width: 95%;
+    font-size: 0.9em;
+  }
+
+  .chatbot-header {
+    padding: 10.8px 14.4px; 
+    border-radius: 18px;
+  }
+
+  .chatbot-toggle {
+    font-size: 20px;
+  }
+
+  .chatbot-body {
+    padding: 9px;
+    max-height: 450px; 
+  }
+
+  .chatbot-messages {
+    gap: 9px;
+    margin-bottom: 9px;
+  }
+
+  .message {
+    padding: 7px 10.8px;
+    font-size: 0.9em;
+  }
+
+  .chatbot-input-container {
+    gap: 7px;
+    padding: 0 9px 9px 9px;
+  }
+
+  .chatbot-input-container input {
+    padding: 5.4px;
+    font-size: 0.9em;
+  }
+
+  .chatbot-input-container button {
+    padding: 5.4px 10.8px;
+    font-size: 0.9em;
+  }
+
+  .language-buttons {
+    margin: 9px 18px;
+  }
+
+  .language-buttons button {
+    padding: 5.4px 10.8px;
+    border-radius: 4.5px;
+  }
+}
+

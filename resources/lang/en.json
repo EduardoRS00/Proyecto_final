@@ -15,7 +15,7 @@
     "general.menu": "Menu",
     "general.a_la_carte": "À la carte",
     "general.comments": "Comments",
-    "general.write_comment": "Write your comment",
+    "general.write_comment": "Write your comment (optional)",
     "general.required_fields": "All required fields must be filled out before continuing.",
     "general.reserve": "Reserve",
     "general.firstname": "First name",

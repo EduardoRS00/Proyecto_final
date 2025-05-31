@@ -18,14 +18,12 @@ class AdminController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user(); // Restaurante logueado
+            $user = Auth::user(); 
            
             if (!$user->is_active_payment || (isset($user->payment_date) && \Carbon\Carbon::parse($user->payment_date)->addYear()->lt(now()))) {
-                Auth::logout(); // Cierra la sesión
+                Auth::logout();
                 return redirect()->route('login')->withErrors(['email' => 'Tu suscripción ha caducado. Contacta con administración.']);
             }
-
-            // Sigue el flujo normal si tiene pago válido
             $selectedDate = $request->input('date');
             $timeFilter = $request->input('time');
             $nameFilter = $request->input('search');
@@ -50,7 +48,6 @@ class AdminController extends Controller
             ));
         }
 
-        // Credenciales incorrectas
         return back()->withErrors([
             'email' => 'Credenciales incorrectas.',
         ])->withInput();
@@ -62,10 +59,7 @@ class AdminController extends Controller
         $booking = Booking::findOrFail($id);
         $booking->arrival = true;
         $booking->save();
-
         $user = Auth::user();
-
-        // Recuperar filtros desde el request para no romper la vista
         $selectedDate = $request->input('date');
         $timeFilter = $request->input('time');
         $nameFilter = $request->input('search');

@@ -9,7 +9,7 @@ class ChatbotController extends Controller
     public function enviar(Request $request)
     {
         $userMessage = strtolower(trim($request->input('message')));
-        $lang = $request->input('lang', 'es'); // 'es' o 'en'
+        $lang = $request->input('lang', 'es');
 
         if (!$userMessage) {
             return response()->json([
@@ -18,8 +18,6 @@ class ChatbotController extends Controller
                 ]
             ]);
         }
-
-        // ✅ Ruta dinámica según idioma
         $faqPath = resource_path("data/{$lang}.json");
 
         if (!file_exists($faqPath)) {
@@ -54,7 +52,6 @@ class ChatbotController extends Controller
             }
         }
 
-        // Respuesta por defecto
         $defaultResponse = $lang === 'en'
             ? 'Sorry, I don’t have information about that. Could you rephrase?'
             : 'Lo siento, no tengo información sobre eso. ¿Podrías reformular la pregunta?';
